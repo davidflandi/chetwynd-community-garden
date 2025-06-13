@@ -1,0 +1,19 @@
+runtime: nodejs20
+
+env_variables:
+  NODE_ENV: production
+  SESSION_SECRET: your-session-secret-change-in-production
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 10
+  target_cpu_utilization: 0.6
+
+network:
+  instance_ip_mode: external
+
+handlers:
+- url: /.*
+  script: auto
+  secure: always
+  redirect_http_response_code: 301
